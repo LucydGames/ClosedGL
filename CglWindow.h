@@ -19,6 +19,7 @@ namespace Cgl
 		void setViewport();
 		bool isKeyPressed(int key);
 		void clear(float r, float g, float b, float a);
+		void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 	private:
 		GLFWwindow* mainWindow;
 	};

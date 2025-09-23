@@ -30,3 +30,13 @@ Cgl::Window::~Window()
 	glfwDestroyWindow(mainWindow);
 	glfwTerminate();
 }
+
+void Cgl::Window::pollEvents()
+{
+	glfwPollEvents();
+}
+
+void Cgl::Window::framebufferSizeCallback(GLFWwindow* window, int width, int height)
+{
+
+}
