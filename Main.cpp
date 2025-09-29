@@ -1,6 +1,20 @@
-#include<iostream>
+
+#define GLFW_INCLUDE_NONE
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
+#include"CglWindow.h"
+#include<iostream>
+
+
+void framebufferSizeCallback([[maybe_unused]] GLFWwindow* window, int width, int height)
+{
+	
+
+	glViewport(0, 0, width, height);
+	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glfwSwapBuffers(window);
+}
 
 int main()
 {
@@ -29,7 +43,7 @@ int main()
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwSwapBuffers(mainWindow);
-
+	glfwSetFramebufferSizeCallback(mainWindow, framebufferSizeCallback);
 	while (!glfwWindowShouldClose(mainWindow))
 	{
 		glfwPollEvents();
@@ -37,11 +51,8 @@ int main()
 		if (glfwGetKey(mainWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(mainWindow, true);
 		
-		int width, height;
-		glfwGetWindowSize(mainWindow, &width, &height);
-		glViewport(0, 0, width, height);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glfwSwapBuffers(mainWindow);
+		
+		//glfwSwapBuffers(mainWindow);
 	
 	}
 	glfwDestroyWindow(mainWindow);
