@@ -15,19 +15,19 @@ Log::~Log()
 
 void Log::printInfo(const std::string& message)
 {
-	LogMessage("INFO: ", message);
+	LogMessage("INFO:", message);
 	std::cout << "Log: " << message << std::endl;
 }
 
 void Log::printWarning(const std::string& message)
 {
-	LogMessage("WARNING: ", message);
+	LogMessage("WARNING:", message);
 	std::cerr << message << std::endl;
 }
 
 void Log::printError(const std::string& message)
 {
-	LogMessage("ERROR: ", message);
+	LogMessage("ERROR:", message);
 	std::cerr << message << std::endl;
 }
 
@@ -48,7 +48,7 @@ void Log::LogMessage(const std::string& level, const std::string& message)
 		tm localTime; // Declare your own tm struct
 		char buf[20];
 		if (localtime_s(&localTime, &now) == 0) { // Pass its address
-			std::cout << "Year: " << localTime.tm_year + 1900;
+			//std::cout << "Year: " << localTime.tm_year + 1900;
 			std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &localTime);
 		}
 		else {
