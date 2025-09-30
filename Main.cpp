@@ -7,6 +7,7 @@
 #include<glad/glad.h>
 //#include<GLFW/glfw3.h>
 #include"CglWindow.h"
+//#include"Log.h"
 
 
 // Vertex Shader source code
@@ -28,8 +29,8 @@ const char* fragmentShaderSource = "#version 330 core\n"
 
 int main()
 {
+	Log::getInstance().printInfo("Application Starting...");
 	Cgl::Window window(800, 600, "OpenGL Window");
-	//gladLoadGL();
 	
 	// Create Vertex Shader Object and get its reference
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -102,15 +103,11 @@ int main()
 	while (!window.shouldClose())
 	{
 		window.pollEvents();
-		//glfwSwapBuffers(MainWindow);
 		// Specify the color of the background
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		// Clean the back buffer and assign the new color to it
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//ImGui_ImplGlfw_CharCallback(window.mainWindow, [](GLFWwindow*, unsigned int c) {
-			//ImGui::GetIO().AddInputCharacter(c);
-			//});
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -132,9 +129,6 @@ int main()
 		window.swapBuffers();
 		// Take care of all GLFW events
 		window.windowInputEvents();
-		
-		
-		//glfwSwapBuffers(mainWindow);
 	
 	}
 	// Cleanup: Termitate ImGui, clearing any resources allocated by ImGui.
@@ -147,5 +141,7 @@ int main()
 	glDeleteProgram(shaderProgram);
 	//Termitate GLFW, clearing any resources allocated by GLFW.
 	window.~Window();
+	Log::getInstance().printInfo("Program terminated successfully");
+	Log::getInstance().~Log(); // Explicitly call destructor to close log file before program ends
 	return 0;
 }

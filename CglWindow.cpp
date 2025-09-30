@@ -16,17 +16,21 @@ namespace Cgl
 	{
 		if (!glfwInit())
 		{
+			Log::getInstance().printError("Failed to initialize Glfw...");
 			throw std::runtime_error("Failed to initialize GLFW");
 		}
+		Log::getInstance().printInfo("Glfw initialized successfully, creating window...");
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		mainWindow = glfwCreateWindow(width, height, windowTitle, NULL, NULL);
 		if (mainWindow == NULL)
 		{
+			Log::getInstance().printError("Failed to create Glfw window...");
 			glfwTerminate();
 			throw std::runtime_error("Failed to create GLFW window");
 		}
+		Log::getInstance().printInfo("Glfw window created successfully...");
 		makeContextCurrent();
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
@@ -46,6 +50,7 @@ namespace Cgl
 	
 	Window::~Window()
 	{
+		Log::getInstance().printInfo("Terminating GLFW and destroying window...");
 		glfwDestroyWindow(mainWindow);
 		mainWindow = nullptr;
 		glfwTerminate();
