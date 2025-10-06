@@ -30,7 +30,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 int main()
 {
 	Log::getInstance().printInfo("Application Starting...");
-	Cgl::Window window(800, 600, "OpenGL Window");
+	Cgl::Window window(800, 600, "Closed GL");
 	
 	// Create Vertex Shader Object and get its reference
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -119,8 +119,8 @@ int main()
 		// Draw the triangle using the GL_TRIANGLES primitive
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
-		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-		ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+		ImGui::Begin("Goodbye, world!");                          // Create a window called "Hello, world!" and append into it.
+		ImGui::Text("This is not some useful text.");               // Display some text (you can use a format strings too)
 		ImGui::End();
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -140,7 +140,7 @@ int main()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteProgram(shaderProgram);
 	//Termitate GLFW, clearing any resources allocated by GLFW.
-	window.~Window();
+	//window.~Window();
 	Log::getInstance().printInfo("Program terminated successfully");
 	Log::getInstance().~Log(); // Explicitly call destructor to close log file before program ends
 	return 0;

@@ -7,6 +7,8 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 	//glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	//glClear(GL_COLOR_BUFFER_BIT);
 	//glfwSwapBuffers(window);
+	width = width;
+	height = height;
 }
 
 namespace Cgl
